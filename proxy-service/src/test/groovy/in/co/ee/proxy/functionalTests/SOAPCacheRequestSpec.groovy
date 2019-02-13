@@ -4,7 +4,7 @@ import groovyx.net.http.ContentType
 
 
 class SOAPCacheRequestSpec extends IntegrationBaseSpec {
-    def SOAPBody = """<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:man="http://soa.o2.co.uk/manageprepayboltonsdata_1" xmlns:cor="http://soa.o2.co.uk/coredata_1">
+    def SOAPBody = """<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:man="http://soa.ee.co.uk/manageprepayboltonsdata_1" xmlns:cor="http://soa.ee.co.uk/coredata_1">
                        <soapenv:Header/>
                        <soapenv:Body>
                           <man:getValidBoltons>
@@ -63,7 +63,7 @@ class SOAPCacheRequestSpec extends IntegrationBaseSpec {
         when:"error from soa"
 
         String request = """
-        <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:man="http://soa.o2.co.uk/manageprepayboltonsdata_1" xmlns:cor="http://soa.o2.co.uk/coredata_1">
+        <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:man="http://soa.ee.co.uk/manageprepayboltonsdata_1" xmlns:cor="http://soa.ee.co.uk/coredata_1">
            <soapenv:Header/>
            <soapenv:Body>
               <man:getValidBoltons>

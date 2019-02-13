@@ -9,7 +9,7 @@ class SoapRequestSpec extends IntegrationBaseSpec {
         def response = http.post(path: 'soap/services/ManagePrepayBoltons_1_0',
                 requestContentType: ContentType.XML,
                 body: """
-                <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:man="http://soa.o2.co.uk/manageprepayboltonsdata_1" xmlns:cor="http://soa.o2.co.uk/coredata_1">
+                <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:man="http://soa.ee.co.uk/manageprepayboltonsdata_1" xmlns:cor="http://soa.ee.co.uk/coredata_1">
                    <soapenv:Header/>
                    <soapenv:Body>
                       <man:getValidBoltons>
@@ -44,7 +44,7 @@ class SoapRequestSpec extends IntegrationBaseSpec {
         def response = http.post(path: 'soap/services/ManagePrepayBoltons_1_0',
                 requestContentType: ContentType.XML,
                 body: """
-                <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:man="http://soa.o2.co.uk/manageprepayboltonsdata_1" xmlns:cor="http://soa.o2.co.uk/coredata_1">
+                <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:man="http://soa.ee.co.uk/manageprepayboltonsdata_1" xmlns:cor="http://soa.ee.co.uk/coredata_1">
                    <soapenv:Header/>
                    <soapenv:Body>
                       <man:getValidBoltons>

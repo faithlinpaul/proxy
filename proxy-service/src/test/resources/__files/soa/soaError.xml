@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <soapenv:Envelope
-        xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cor="http://soa.o2.co.uk/coredata_1">
+        xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cor="http://soa.ee.co.uk/coredata_1">
     <soapenv:Header>
         <cor:SOATransactionID>bf0e9570-d749-4a7a-b49a-1aa42e729089</cor:SOATransactionID>
     </soapenv:Header>
@@ -9,7 +9,7 @@
             <faultcode>soapenv:Server</faultcode>
             <faultstring>System Error</faultstring>
             <detail>
-                <svc:getValidBoltonsFault xmlns:svc="http://soa.o2.co.uk/manageprepayboltonsdata_1">
+                <svc:getValidBoltonsFault xmlns:svc="http://soa.ee.co.uk/manageprepayboltonsdata_1">
                     <cor:SOAFaultOriginator></cor:SOAFaultOriginator>
                     <cor:SOAFaultCode>manageprepayboltons-37173-2000-F</cor:SOAFaultCode>
                     <cor:faultDescription>System Error</cor:faultDescription>

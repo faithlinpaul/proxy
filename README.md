@@ -7,7 +7,6 @@
 ### Project setup
 To setup and run the project locally
 ```
-cd MyO2_Proxy
 ./gradlew clean build bootRun
 ```
 
