@@ -1,0 +1,63 @@
+server:
+  port: 1960
+  tomcat:
+    max-threads: 100
+    basedir: logs
+    accesslog:
+       directory: proxy
+       prefix: proxyapp-access
+       pattern: "%h %t %{transaction-id}i %r %s %b %D"
+
+
+providers:
+  soa:
+    providerType: SOAP
+    url: http://localhost:1961
+    cacheDurationSecs: 2
+  ssl:
+    providerType: SOAP
+    url: https://localhost:1962
+    keystoreBaseName: keystore.jks
+    keystorePassword: password
+    truststoreBaseName: cacerts.jks
+    truststorePassword: password
+    cacheDurationSecs: 2
+  rest:
+    providerType: REST
+    url: http://localhost:1961
+  notqueued:
+    providerType: REST
+    url: http://localhost:1961
+  queued:
+    providerType: REST
+    url: http://localhost:1961
+    queuingEnabled: true
+    cacheDurationSecs: 10
+  cache:
+    providerType: REST
+    url: http://localhost:1961
+    connectionPoolMaxPerRoute: 100
+    requestTimeoutMs: 5000
+    cacheDurationSecs: 2
+  soap:
+    providerType: SOAP
+    url: http://localhost:1961
+    connectionPoolMaxPerRoute: 100
+    requestTimeoutMs: 5000
+
+default:
+  cacheDurationSecs: 300
+  connectionPoolMaxTotal: 1000
+  connectionPoolMaxPerRoute: 100
+  requestTimeoutMs: 10000
+  connectTimeoutMs: 1000
+
+
+cache:
+  host: localhost
+  port: 6379
+  threadPoolSize: 100
+  timeout: 1000
+
+logging:
+  location: logs/proxy

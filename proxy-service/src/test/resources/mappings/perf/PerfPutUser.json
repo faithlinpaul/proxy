@@ -1,0 +1,20 @@
+{
+  "request": {
+    "method": "PUT",
+    "urlPathPattern": "/perf/user/update/([0-9]*)",
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$.msisdn"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "fixedDelayMilliseconds" : 2000,
+    "body": "{\"responseMsisdn\": \"$(msisdn)\"}",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "transformers": ["body-transformer"]
+  }
+}

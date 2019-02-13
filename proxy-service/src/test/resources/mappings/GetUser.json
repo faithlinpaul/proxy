@@ -1,0 +1,19 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/user/1",
+    "headers": {
+      "transaction-id": {
+        "equalTo": "1234"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "bodyFileName": "getUser.json",
+    "headers": {
+      "Content-Type": "application/json",
+      "Custom-Header" : "I am present, are you?"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/services/ManagePrepayBoltons_1_0",
+    "bodyPatterns": [
+      {
+        "matchesXPath": "//man:getValidBoltons/man:customerId/cor:msisdn[contains(text(), '447711011005')]",
+        "withXPathNamespaces": {
+          "man": "http://soa.ee.co.uk/manageprepayboltonsdata_1",
+          "cor": "http://soa.ee.co.uk/coredata_1"
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 500,
+    "bodyFileName": "soa/soaError.xml",
+    "headers": {
+      "Content-Type": "text/xml"
+    }
+  }
+}

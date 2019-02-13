@@ -1,0 +1,23 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/services/ManagePrepayBoltons_1_0",
+    "bodyPatterns": [
+      {
+        "matchesXPath": "//man:getValidBoltons/man:customerId/cor:msisdn[contains(text(), '447711011004')]",
+        "withXPathNamespaces": {
+          "man": "http://soa.ee.co.uk/manageprepayboltonsdata_1",
+          "cor": "http://soa.ee.co.uk/coredata_1"
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "bodyFileName": "soa/ManagePrepayBoltons_1_0.xml",
+    "headers": {
+      "Content-Type": "text/xml",
+      "OPTR_CXT" : "0100010000a4ca8c2c-b101-11e6-9b22-2faf462b196700000000-0000-0000-0000-000000000000-1 SOAP;"
+    }
+  }
+}

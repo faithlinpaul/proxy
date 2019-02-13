@@ -1,0 +1,22 @@
+{
+  "request": {
+    "method": "PUT",
+    "url": "/user/1",
+    "headers": {
+      "My-Custom-Header": {
+        "equalTo": "1234"
+      }
+    },
+    "bodyPatterns" : [
+      { "equalToJson" : "{\"foo\": \"bar\"}" }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "bodyFileName": "putUser.json",
+    "headers": {
+      "Content-Type": "application/json",
+      "Custom-Header" : "I am present"
+    }
+  }
+}

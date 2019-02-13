@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<included>
+
+    <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter" />
+    <conversionRule conversionWord="wex" converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter" />
+
+    <property name="CONSOLE_LOG_PATTERN" value="%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n%wex"/>
+    <property name="FILE_LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [transaction-id: %X{txid}] %5p ${PID:- } --- [%t] %-40.40logger{39} : %m%n%wex"/>
+    <property name="JSON_PATTERN" value="%m"/>
+
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+
+    <appender name="LOG_APP" class="ch.qos.logback.core.FileAppender">
+        <file>${APP_LOG}</file>
+        <encoder>
+            <pattern>${FILE_LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="LOG_JOURNAL" class="ch.qos.logback.core.FileAppender">
+        <file>${JOURNAL}</file>
+        <encoder>
+            <pattern>${JSON_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="LOG_SUCCESS_RESPONSE" class="ch.qos.logback.core.FileAppender">
+        <file>${PROXY_SUCCESS}</file>
+        <encoder>
+            <pattern>${FILE_LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="LOG_ERROR_RESPONSE" class="ch.qos.logback.core.FileAppender">
+        <file>${PROXY_ERROR}</file>
+        <encoder>
+            <pattern>${FILE_LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+
+    <logger name="in.co.ee.proxy" level="INFO" additivity="false">
+        <appender-ref ref="LOG_APP" />
+    </logger>
+
+
+    <logger name="JOURNAL" level="INFO" additivity="false">
+        <appender-ref ref="LOG_JOURNAL" />
+    </logger>
+
+    <logger name="serviceproxy.requestResponseLogger" level="INFO" additivity="false">
+        <appender-ref ref="LOG_SUCCESS_RESPONSE" />
+    </logger>
+
+    <logger name="serviceproxy.negativeRequestResponseLogger" level="INFO" additivity="false">
+        <appender-ref ref="LOG_ERROR_RESPONSE" />
+    </logger>
+
+    <root level="INFO">
+        <appender-ref ref="LOG_APP" />
+    </root>
+
+</included>

@@ -1,0 +1,15 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/perf/user/([0-9]*)"
+  },
+  "response": {
+    "status": 200,
+    "fixedDelayMilliseconds" : 2000,
+    "body": "{\"data\": \"$(!RandomInteger)\"}",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "transformers": ["body-transformer"]
+  }
+}

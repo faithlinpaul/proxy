@@ -1,0 +1,13 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/user?id=1"
+  },
+  "response": {
+    "status": 201,
+    "bodyFileName": "postUser.json",
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

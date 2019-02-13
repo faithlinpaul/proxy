@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <springProperty name="logLocation" source="logging.location"/>
+
+    <property name="APP_LOG" value="${logLocation}/proxyapp.log"/>
+    <property name="PROXY_SUCCESS" value="${logLocation}/proxyapp-request-response.log"/>
+    <property name="PROXY_ERROR" value="${logLocation}/proxyapp-request-response-error.log"/>
+    <property name="JOURNAL" value="${logLocation}/proxyapp-journal.log"/>
+    <include resource="logback/base.xml" />
+
+</configuration>

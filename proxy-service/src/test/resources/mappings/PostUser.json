@@ -1,0 +1,22 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/user/1",
+    "headers": {
+      "transaction-id": {
+        "equalTo": "1234"
+      }
+    },
+    "bodyPatterns" : [
+      { "equalToJson" : "{\"foo\": \"bar\"}" }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "bodyFileName": "postUser.json",
+    "headers": {
+      "Content-Type": "application/json",
+      "Custom-Header" : "I am present"
+    }
+  }
+}
