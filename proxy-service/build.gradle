@@ -7,16 +7,22 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:1.3.0.RELEASE")
+        classpath "gradle.plugin.com.palantir.gradle.docker:gradle-docker:0.21.0"
     }
-
 }
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
+apply plugin: 'com.palantir.docker'
 apply plugin: 'idea'
 apply plugin: 'groovy'
 apply plugin: 'spring-boot'
 
+app = "proxy-service"
+group = "com.ibs.hospitality.proxy"
+version = "1.0.0.0"
+description = "proxy"
+//projectVersion = "1.0.0.0"
 
 springBoot {
     mainClass = "in.co.ee.proxy.Application"
@@ -24,9 +30,13 @@ springBoot {
 
 jar {
     baseName = 'proxy-service'
-    version = "${projectVersion}"
+    version =      "1.0.0.0"     //"${projectVersion}"
     excludes = ['**/application*.yml']
 }
+//
+//bootJar {
+//    baseName "ReconciliationService"
+//}
 
 repositories {
 
@@ -96,7 +106,22 @@ dependencies {
 }
 
 bootRun {
-    jvmArgs = ['-Xrunjdwp:server=y,transport=dt_socket,address=4000,suspend=n']
+    jvmArgs = ['-Xrunjdwp:server=y,transport=dt_socket,address=9090,suspend=n']
     addResources = true
 }
+
+//
+//
+//docker {
+//    name "ibs/${app}:latest"
+//    files "${project.bootJar.outputs.files.singleFile}"
+//    dockerfile project.file('docker/Dockerfile')
+//}
+
+docker {
+    files tasks.distTar.outputs.files.singleFile  //, 'my-file.txt'
+//    copySpec.from("src/myDir").into("myDir")
+}
+
+dockerPrepare.dependsOn(jar)
 
