@@ -7,18 +7,18 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:1.3.0.RELEASE")
-        classpath "gradle.plugin.com.palantir.gradle.docker:gradle-docker:0.21.0"
+//        classpath "gradle.plugin.com.palantir.gradle.docker:gradle-docker:0.21.0"
     }
 }
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
-apply plugin: 'com.palantir.docker'
+//apply plugin: 'com.palantir.docker'
 apply plugin: 'idea'
 apply plugin: 'groovy'
 apply plugin: 'spring-boot'
 
-app = "proxy-service"
+//app = "proxy-service"
 group = "com.ibs.hospitality.proxy"
 version = "1.0.0.0"
 description = "proxy"
@@ -117,11 +117,11 @@ bootRun {
 //    files "${project.bootJar.outputs.files.singleFile}"
 //    dockerfile project.file('docker/Dockerfile')
 //}
+//
+//docker {
+//    files tasks.distTar.outputs.files.singleFile  //, 'my-file.txt'
+////    copySpec.from("src/myDir").into("myDir")
+//}
 
-docker {
-    files tasks.distTar.outputs.files.singleFile  //, 'my-file.txt'
-//    copySpec.from("src/myDir").into("myDir")
-}
-
-dockerPrepare.dependsOn(jar)
+//dockerPrepare.dependsOn(jar)
 
