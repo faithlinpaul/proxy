@@ -1,9 +1,7 @@
 
 pipeline {
     agent none
-
     stages{
-
         stage('Build') {
             agent {
                 docker {
@@ -11,9 +9,9 @@ pipeline {
                 }
             }
             steps{
-                sh "ls -lta"
                 sh "./gradlew clean build -x test --info --stacktrace"
             }
+
         }
     }
 }
