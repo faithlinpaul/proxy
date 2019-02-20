@@ -1,10 +1,6 @@
 
 pipeline {
-     agent {
-         docker {
-             image 'gradle'
-         }
-      }
+    agent none
     stages{
         stage('Build') {
             agent {
@@ -18,7 +14,12 @@ pipeline {
 
         }
          stage('Test') {
-            steps{
+                agent {
+                          docker {
+                              image 'gradle'
+                          }
+                 }
+           steps{
                 sh "test"
                 //sh "gradle check --info --stacktrace"
             }
