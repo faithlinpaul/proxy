@@ -1,19 +1,68 @@
-//import org.springframework.boot.gradle.tasks.bundling.BootJar
-
-plugins {
-//    application
-    id 'idea'
-    id 'java'
-    id("org.springframework.boot") version "2.1.1.RELEASE"
-    id("io.spring.dependency-management") version "1.0.6.RELEASE"
-
-    id("com.palantir.docker") version "0.21.0"
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.3.0.RELEASE")
+//        classpath("gradle.plugin.com.palantir.gradle.docker:gradle-docker:0.21.0")
+        
+    }
 }
 
 
+apply plugin: 'java'
+apply plugin: 'eclipse'
+//apply plugin: 'com.palantir.docker'
+apply plugin: 'idea'
+apply plugin: 'groovy'
+apply plugin: 'spring-boot'
+
+//app = "proxy-service"
+group = "com.ibs.hospitality.proxy"
+version = "1.0.0.0"
+description = "proxy"
+
+springBoot {
+    mainClass = "in.co.ee.proxy.Application"
+}
+
+jar {
+    baseName = 'proxy-service'
+    version =      "1.0.0.0"     //"${projectVersion}"
+    excludes = ['**/application*.yml']
+}
+
 repositories {
-    jcenter()
+
+    maven { url 'http://repo.spring.io/libs-snapshot' }
     mavenCentral()
+    jcenter()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+configurations {
+    provided
+    all*.exclude group: '', module: 'tomcat-servlet-api'
+    all*.exclude group: '', module: 'servlet-api'
+}
+
+sourceSets.main.compileClasspath += [configurations.provided]
+
+idea {
+    module {
+        scopes.PROVIDED.plus += [configurations.provided]
+    }
+}
+
+eclipse {
+    classpath {
+        plusConfigurations += [configurations.provided]
+    }
 }
 
 dependencies {
@@ -51,6 +100,7 @@ dependencies {
     testCompile("com.github.kstyrc:embedded-redis:0.6")
 
 
+
 } 
 
 bootRun {
@@ -59,27 +109,16 @@ bootRun {
 }
 
 //
-//application {
-//    mainClassName = "app.AppKt"
-//    applicationName = "app"
-//    version = "0.1-SNAPSHOT"
-//    group = "com.ee.ibs.proxy"
-////}
-//
-java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
-}
-//
-//springBoot {
-//    buildInfo()
+//docker {
+//    name "ibs/${app}:latest"
+//    files "${project.bootJar.outputs.files.singleFile}"
+//    dockerfile project.file('docker/Dockerfile')
 //}
-
-
-docker {
-    dependsOn(build)
-    name = "${project.group}/${bootJar.archiveBaseName.get()}".toLowerCase()
-    files(bootJar.archiveFile, "$projectDir/docker/run.sh")
-    setDockerfile(file("$projectDir/docker/Dockerfile"))
-    pull(true)
-}
+//
+//docker {
+//    files tasks.distTar.outputs.files.singleFile  //, 'my-file.txt'
+////    copySpec.from("src/myDir").into("myDir")
+//}
+//
+//dockerPrepare.dependsOn(jar)
+//
