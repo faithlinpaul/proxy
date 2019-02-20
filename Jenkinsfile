@@ -1,7 +1,9 @@
 
 pipeline {
-    agent 'docker-slaves'{
-        image 'gradle'
+    agent {
+        docker {
+            image 'gradle'
+        }
     }
 
     stages{
