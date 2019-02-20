@@ -77,7 +77,7 @@ java {
 
 
 docker {
-    dependsOn(build)
+    dependsOn(build44)
     name = "${project.group}/${bootJar.archiveBaseName.get()}".toLowerCase()
     files(bootJar.archiveFile, "$projectDir/docker/run.sh")
     setDockerfile(file("$projectDir/docker/Dockerfile"))
