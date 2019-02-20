@@ -1,7 +1,6 @@
 
 pipeline {
     agent none
-    checkout scm
 
     stages{
 
