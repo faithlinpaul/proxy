@@ -1,13 +1,10 @@
 
 pipeline {
     agent none
+    checkout scm
 
     stages{
-        stage('Clean') {
-            steps{
-                deleteDir()
-            }
-        }
+
         stage('Build') {
             agent {
                 docker {
@@ -15,6 +12,7 @@ pipeline {
                 }
             }
             steps{
+                sh "ls -lta"
                 sh "gradle clean build -x test --info --stacktrace"
             }
         }
