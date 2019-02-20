@@ -1,6 +1,10 @@
 
 pipeline {
-    agent none
+     agent {
+         docker {
+             image 'gradle'
+         }
+      }
     stages{
         stage('Build') {
             agent {
