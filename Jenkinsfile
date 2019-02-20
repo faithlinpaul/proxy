@@ -1,15 +1,10 @@
 
 pipeline {
-    agent any
+    agent ecs
     stages{
         stage('Clean') {
             steps{
                 deleteDir()
-            }
-        }
-        stage('Checkout') {
-            steps{
-                checkout scm
             }
         }
         stage('Build') {
