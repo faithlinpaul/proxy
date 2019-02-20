@@ -50,7 +50,14 @@ dependencies {
     testCompile "org.codehaus.groovy.modules.http-builder:http-builder:0.7.1"
     testCompile("com.github.kstyrc:embedded-redis:0.6")
 
+
+} 
+
+bootRun {
+    jvmArgs = ['-Xrunjdwp:server=y,transport=dt_socket,address=9090,suspend=n']
+    addResources = true
 }
+
 //
 //application {
 //    mainClassName = "app.AppKt"
