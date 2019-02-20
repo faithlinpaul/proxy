@@ -1,19 +1,12 @@
-pipeline {
-    agent any
-        try {
-            stages{
-                stage('Clean') {
-                    deleteDir()
-                }
-                stage('Checkout') {
-                    checkout scm
-                }
-                stage('Build') {
-                    sh "gradle clean build -x test --info --stacktrace"
-                }
-            }
-        }
-        catch (error) {
-            throw error
-        }
+
+stages{
+    stage('Clean') {
+        deleteDir()
+    }
+    stage('Checkout') {
+        checkout scm
+    }
+    stage('Build') {
+        sh "gradle clean build -x test --info --stacktrace"
+    }
 }
