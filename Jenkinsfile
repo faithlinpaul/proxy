@@ -3,13 +3,19 @@ pipeline {
     agent any
     stages{
         stage('Clean') {
-            deleteDir()
+            steps{
+                deleteDir()
+            }
         }
         stage('Checkout') {
-            checkout scm
+            steps{
+                checkout scm
+            }
         }
         stage('Build') {
-            sh "gradle clean build -x test --info --stacktrace"
+            steps{
+                sh "gradle clean build -x test --info --stacktrace"
+            }
         }
     }
 }
