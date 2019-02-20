@@ -1,0 +1,124 @@
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.3.0.RELEASE")
+//        classpath("gradle.plugin.com.palantir.gradle.docker:gradle-docker:0.21.0")
+        
+    }
+}
+
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+//apply plugin: 'com.palantir.docker'
+apply plugin: 'idea'
+apply plugin: 'groovy'
+apply plugin: 'spring-boot'
+
+//app = "proxy-service"
+group = "com.ibs.hospitality.proxy"
+version = "1.0.0.0"
+description = "proxy"
+
+springBoot {
+    mainClass = "in.co.ee.proxy.Application"
+}
+
+jar {
+    baseName = 'proxy-service'
+    version =      "1.0.0.0"     //"${projectVersion}"
+    excludes = ['**/application*.yml']
+}
+
+repositories {
+
+    maven { url 'http://repo.spring.io/libs-snapshot' }
+    mavenCentral()
+    jcenter()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+configurations {
+    provided
+    all*.exclude group: '', module: 'tomcat-servlet-api'
+    all*.exclude group: '', module: 'servlet-api'
+}
+
+sourceSets.main.compileClasspath += [configurations.provided]
+
+idea {
+    module {
+        scopes.PROVIDED.plus += [configurations.provided]
+    }
+}
+
+eclipse {
+    classpath {
+        plusConfigurations += [configurations.provided]
+    }
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile("org.springframework.boot:spring-boot-starter-aop")
+
+    compile("commons-httpclient:commons-httpclient:3.1")
+    compile('commons-collections:commons-collections:3.1')
+    compile('commons-io:commons-io:1.4')
+    compile("org.apache.httpcomponents:httpclient:4.5.2")
+    compile('commons-beanutils:commons-beanutils:1.8.3')
+    compile("commons-lang:commons-lang:2.5", "commons-io:commons-io:1.4")
+    compile('io.netty:netty-all:4.0.27.Final')
+    compile('org.redisson:redisson:2.2.11')
+    compile('redis.clients:jedis:2.8.1')
+    compile "com.github.jedis-lock:jedis-lock:1.0.0"
+    compile "io.projectreactor.spring:reactor-spring-context:2.0.5.RELEASE"
+    compile "org.codehaus.groovy:groovy-all:2.4.1"
+    compile 'com.google.guava:guava:19.0'
+    compile 'com.google.code.gson:gson:2.8.0'
+
+
+    compile "joda-time:joda-time:2.1"
+
+    provided 'org.projectlombok:lombok:1.16.6'
+
+    testCompile("junit:junit")
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+    testCompile('com.github.tomakehurst:wiremock:1.57')
+    testCompile "org.spockframework:spock-core:1.0-groovy-2.4"
+    testCompile "org.spockframework:spock-spring:1.0-groovy-2.4"
+    testRuntime "cglib:cglib-nodep:3.1"
+    testCompile "org.codehaus.groovy.modules.http-builder:http-builder:0.7.1"
+    testCompile("com.github.kstyrc:embedded-redis:0.6")
+
+
+
+} 
+
+bootRun {
+    jvmArgs = ['-Xrunjdwp:server=y,transport=dt_socket,address=9090,suspend=n']
+    addResources = true
+}
+
+//
+//docker {
+//    name "ibs/${app}:latest"
+//    files "${project.bootJar.outputs.files.singleFile}"
+//    dockerfile project.file('docker/Dockerfile')
+//}
+//
+//docker {
+//    files tasks.distTar.outputs.files.singleFile  //, 'my-file.txt'
+////    copySpec.from("src/myDir").into("myDir")
+//}
+//
+//dockerPrepare.dependsOn(jar)
+//
