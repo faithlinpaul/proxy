@@ -1,18 +1,19 @@
-
-node('ecs') {
+pipeline {
+    agent any
         try {
-            stage('Clean') {
-                deleteDir()
-            }
-            stage('Checkout') {
-                checkout scm
-            }
-            stage('Build') {
-                sh "gradle clean build -x test --info --stacktrace"
+            stages{
+                stage('Clean') {
+                    deleteDir()
+                }
+                stage('Checkout') {
+                    checkout scm
+                }
+                stage('Build') {
+                    sh "gradle clean build -x test --info --stacktrace"
+                }
             }
         }
         catch (error) {
             throw error
         }
-    }
 }
