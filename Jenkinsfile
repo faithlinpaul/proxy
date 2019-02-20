@@ -12,7 +12,7 @@ pipeline {
             }
             steps{
                 sh "ls -lta"
-                sh "gradle clean build -x test --info --stacktrace"
+                sh "./gradlew clean build -x test --info --stacktrace"
             }
         }
     }
