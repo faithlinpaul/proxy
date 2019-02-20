@@ -1,10 +1,6 @@
 
 pipeline {
-    agent {
-        docker {
-            image 'gradle'
-        }
-    }
+    agent none
 
     stages{
         stage('Clean') {
@@ -13,6 +9,11 @@ pipeline {
             }
         }
         stage('Build') {
+            agent {
+                docker {
+                    image 'gradle:5.2.1-jdk11-slim'
+                }
+            }
             steps{
                 sh "gradle clean build -x test --info --stacktrace"
             }
